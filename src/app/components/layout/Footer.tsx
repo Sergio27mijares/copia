@@ -97,17 +97,14 @@ export function Footer() {
             </div>
             <div>
               <div className="flex gap-4">
-                <a href="https://www.facebook.com/ZoomatOficial/" target="_blank" rel="noopener noreferrer" className="bg-emerald-900 p-2 rounded-lg text-emerald-300 hover:text-white hover:bg-emerald-800 transition-colors">
-                  <Facebook className="w-4 h-4" />
+                <a href="https://www.facebook.com/ZoomatOficial/" target="_blank" rel="noopener noreferrer" className="bg-emerald-900 p-2.5 rounded-xl text-emerald-300 hover:text-white hover:bg-emerald-800 transition-colors">
+                  <Facebook className="w-5 h-5" />
                 </a>
-                <a href="https://www.instagram.com/zoomatoficial_/" target="_blank" rel="noopener noreferrer" className="bg-emerald-900 p-2 rounded-lg text-emerald-300 hover:text-white hover:bg-emerald-800 transition-colors">
-                  <Instagram className="w-4 h-4" />
+                <a href="https://www.instagram.com/zoomatoficial_/" target="_blank" rel="noopener noreferrer" className="bg-emerald-900 p-2.5 rounded-xl text-emerald-300 hover:text-white hover:bg-emerald-800 transition-colors">
+                  <Instagram className="w-5 h-5" />
                 </a>
-                <a href="https://twitter.com/SemahnChiapas" target="_blank" rel="noopener noreferrer" className="bg-emerald-900 p-2 rounded-lg text-emerald-300 hover:text-white hover:bg-emerald-800 transition-colors">
-                  <Twitter className="w-4 h-4" />
-                </a>
-                <a href="https://www.tiktok.com/@zoomat.oficial" target="_blank" rel="noopener noreferrer" className="bg-emerald-900 p-2 rounded-lg text-emerald-300 hover:text-white hover:bg-emerald-800 transition-colors">
-                  <Tiktok className="w-4 h-4" />
+                <a href="https://www.tiktok.com/@zoomat.oficial" target="_blank" rel="noopener noreferrer" className="bg-emerald-900 p-2.5 rounded-xl text-emerald-300 hover:text-white hover:bg-emerald-800 transition-colors">
+                  <Tiktok className="w-5 h-5" />
                 </a>
               </div>
             </div>

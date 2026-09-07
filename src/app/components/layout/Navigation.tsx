@@ -69,11 +69,12 @@ export function Navigation() {
             
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-white border border-emerald-200 px-3 py-1.5 rounded-full hover:bg-emerald-50 transition-colors shadow-sm"
+              className="flex items-center gap-1.5 text-xs font-semibold text-emerald-900 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-full hover:bg-emerald-100 transition-all shadow-xs"
               title="Cambiar idioma / Change language"
             >
-              <Globe className="w-3.5 h-3.5" />
-              <span>{i18n.language === 'es' ? 'EN' : 'ES'}</span>
+              <Globe className="w-3.5 h-3.5 text-emerald-600" />
+              <span>{i18n.language === 'es' ? '🇲🇽 ES' : '🇺🇸 EN'}</span>
+              <span className="text-[10px] text-emerald-600 font-bold ml-0.5">({i18n.language === 'es' ? 'Cambiar a EN' : 'Switch to ES'})</span>
             </button>
           </div>
 
@@ -81,10 +82,10 @@ export function Navigation() {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={toggleLanguage}
-              className="p-2 text-emerald-800 hover:bg-emerald-50 rounded-lg transition border border-emerald-100 flex items-center gap-1 text-xs font-bold"
+              className="p-2 text-emerald-900 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition border border-emerald-200 flex items-center gap-1 text-xs font-bold"
             >
-              <Globe className="w-4 h-4" />
-              <span>{i18n.language === 'es' ? 'EN' : 'ES'}</span>
+              <Globe className="w-4 h-4 text-emerald-600" />
+              <span>{i18n.language === 'es' ? 'ES' : 'EN'}</span>
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -93,6 +94,7 @@ export function Navigation() {
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
+
         </div>
 
         {/* Mobile Navigation */}

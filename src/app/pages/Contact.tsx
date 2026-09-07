@@ -1,5 +1,6 @@
-import { Mail, Phone, MapPin, Clock, Send, Facebook, Instagram, Twitter, Heart } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, Facebook, Instagram, Heart } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function Tiktok({ className }: { className?: string }) {
   return (
@@ -19,6 +20,9 @@ function Tiktok({ className }: { className?: string }) {
 }
 
 export function Contact() {
+  const { t, i18n } = useTranslation();
+  const isEs = i18n.language === 'es';
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,66 +32,66 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Gracias por tu mensaje. Te contactaremos pronto.");
+    alert(isEs ? "Gracias por tu mensaje. Te contactaremos pronto." : "Thank you for your message. We will contact you soon.");
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
   const contactInfo = [
     {
       icon: Phone,
-      title: "Teléfono",
-      details: ["(961) 614-4700", "Lun-Vie 9:00-17:00"],
+      title: t("contact.phoneTitle"),
+      details: ["(961) 614-4700", t("contact.phoneHours")],
       links: ["tel:+529616144700", null]
     },
     {
       icon: Mail,
-      title: "Email",
-      details: ["zoomat@zoomat.chiapas.gob.mx", "Respuesta en 24-48 horas"],
+      title: t("contact.emailTitle"),
+      details: ["zoomat@zoomat.chiapas.gob.mx", t("contact.emailResponse")],
       links: ["mailto:zoomat@zoomat.chiapas.gob.mx", null]
     },
     {
       icon: MapPin,
-      title: "Dirección",
-      details: ["Calzada Cerro Hueco S/N", "Tuxtla Gutiérrez, Chiapas"],
+      title: t("contact.addressTitle"),
+      details: [t("contact.addressText"), "Tuxtla Gutiérrez, Chiapas"],
       links: [null, null]
     },
     {
       icon: Clock,
-      title: "Horario de Atención",
-      details: ["Mar-Dom: 9:00-17:00", "Cerrado los lunes"],
+      title: t("contact.hoursTitle"),
+      details: [t("contact.hoursDetail"), ""],
       links: [null, null]
     }
   ];
 
   const departments = [
     {
-      name: "Educación Ambiental",
+      name: t("contact.deptEduName"),
       email: "educacion@zoomat.chiapas.gob.mx",
       phone: "Ext. 123",
-      description: "Visitas escolares y programas educativos"
+      description: t("contact.deptEduDesc")
     },
     {
-      name: "Donaciones y Adopciones",
+      name: t("contact.deptDonName"),
       email: "donaciones@zoomat.chiapas.gob.mx",
       phone: "Ext. 145",
-      description: "Apoya la conservación de nuestros animales"
+      description: t("contact.deptDonDesc")
     },
     {
-      name: "Administración",
+      name: t("contact.deptAdminName"),
       email: "admin@zoomat.chiapas.gob.mx",
       phone: "Ext. 100",
-      description: "Información general y administrativa"
+      description: t("contact.deptAdminDesc")
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-stone-50 to-emerald-100">
       {/* Header */}
-      <section className="bg-gradient-to-r from-green-700 to-green-900 text-white py-16">
+      <section className="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white py-16 shadow-md">
         <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-5xl font-bold mb-4">Contacto</h1>
-          <p className="text-xl text-green-100">
-            Estamos aquí para ayudarte. Contáctanos para cualquier consulta
+          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight">{t("contact.title")}</h1>
+          <p className="text-lg sm:text-xl text-emerald-100/90 font-medium max-w-2xl">
+            {t("contact.subtitle")}
           </p>
         </div>
       </section>
@@ -96,78 +100,78 @@ export function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Formulario de Contacto */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <h2 className="text-3xl font-bold text-green-800 mb-6">Envíanos un Mensaje</h2>
+            <div className="bg-white rounded-2xl shadow-xl p-8 border border-emerald-100">
+              <h2 className="text-3xl font-bold text-emerald-950 mb-6">{t("contact.sendMessage")}</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Nombre Completo *
+                    <label className="block text-sm font-semibold text-stone-700 mb-2">
+                      {t("contact.fullName")}
                     </label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      placeholder="Tu nombre"
+                      className="w-full px-4 py-3 border border-stone-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
+                      placeholder={isEs ? "Tu nombre" : "Your name"}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Email *
+                    <label className="block text-sm font-semibold text-stone-700 mb-2">
+                      {t("contact.email")}
                     </label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-stone-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
                       placeholder="tu@email.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Asunto *
+                  <label className="block text-sm font-semibold text-stone-700 mb-2">
+                    {t("contact.subject")}
                   </label>
                   <select
                     required
                     value={formData.subject}
                     onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-stone-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm bg-white"
                   >
-                    <option value="">Selecciona un asunto</option>
-                    <option value="informacion">Información General</option>
-                    <option value="visita-escolar">Visita Escolar</option>
-                    <option value="donacion">Donaciones</option>
-                    <option value="voluntariado">Voluntariado</option>
-                    <option value="quejas">Quejas y Sugerencias</option>
-                    <option value="otro">Otro</option>
+                    <option value="">{t("contact.selectSubject")}</option>
+                    <option value="informacion">{t("contact.optGeneral")}</option>
+                    <option value="visita-escolar">{t("contact.optSchool")}</option>
+                    <option value="donacion">{t("contact.optDonation")}</option>
+                    <option value="voluntariado">{t("contact.optVolunteer")}</option>
+                    <option value="quejas">{t("contact.optFeedback")}</option>
+                    <option value="otro">{t("contact.optOther")}</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Mensaje *
+                  <label className="block text-sm font-semibold text-stone-700 mb-2">
+                    {t("contact.message")}
                   </label>
                   <textarea
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
-                    placeholder="Escribe tu mensaje aquí..."
+                    className="w-full px-4 py-3 border border-stone-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none text-sm"
+                    placeholder={t("contact.messagePlaceholder")}
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-green-700 text-white py-4 rounded-lg font-semibold hover:bg-green-800 transition flex items-center justify-center gap-2"
+                  className="w-full bg-emerald-800 text-white py-4 rounded-xl font-bold hover:bg-emerald-900 transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
                 >
                   <Send className="w-5 h-5" />
-                  Enviar Mensaje
+                  {t("contact.sendButton")}
                 </button>
               </form>
             </div>
@@ -176,17 +180,17 @@ export function Contact() {
           {/* Información de Contacto */}
           <div className="space-y-6">
             {contactInfo.map((info, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-6">
-                <div className="flex items-start gap-3">
-                  <div className="bg-green-100 p-3 rounded-lg">
-                    <info.icon className="w-6 h-6 text-green-700" />
+              <div key={index} className="bg-white rounded-2xl shadow-lg p-6 border border-emerald-100">
+                <div className="flex items-start gap-4">
+                  <div className="bg-emerald-100 p-3 rounded-xl text-emerald-800">
+                    <info.icon className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg text-gray-800 mb-1">{info.title}</h3>
-                    {info.details.map((detail, idx) => (
-                      <p key={idx} className="text-gray-600 text-sm">
+                    <h3 className="font-bold text-lg text-emerald-950 mb-1">{info.title}</h3>
+                    {info.details.filter(Boolean).map((detail, idx) => (
+                      <p key={idx} className="text-stone-600 text-sm">
                         {info.links && info.links[idx] ? (
-                          <a href={info.links[idx]} className="text-green-700 hover:underline">
+                          <a href={info.links[idx]} className="text-emerald-700 font-semibold hover:underline">
                             {detail}
                           </a>
                         ) : (
@@ -199,45 +203,42 @@ export function Contact() {
               </div>
             ))}
 
-            {/* Redes Sociales */}
-            <div className="bg-gradient-to-br from-green-700 to-green-900 text-white rounded-xl shadow-lg p-6">
-              <h3 className="font-bold text-lg mb-4">Síguenos en Redes Sociales</h3>
+            {/* Redes Sociales (Sin SemahnChiapas Twitter) */}
+            <div className="bg-gradient-to-br from-emerald-800 to-emerald-950 text-white rounded-2xl shadow-xl p-6">
+              <h3 className="font-bold text-lg mb-4">{t("contact.followUs")}</h3>
               <div className="flex gap-3">
-                <a href="https://www.facebook.com/ZoomatOficial/" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 p-3 rounded-lg transition">
+                <a href="https://www.facebook.com/ZoomatOficial/" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 p-3 rounded-xl transition">
                   <Facebook className="w-6 h-6" />
                 </a>
-                <a href="https://www.instagram.com/zoomatoficial_/" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 p-3 rounded-lg transition">
+                <a href="https://www.instagram.com/zoomatoficial_/" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 p-3 rounded-xl transition">
                   <Instagram className="w-6 h-6" />
                 </a>
-                <a href="https://twitter.com/SemahnChiapas" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 p-3 rounded-lg transition">
-                  <Twitter className="w-6 h-6" />
-                </a>
-                <a href="https://www.tiktok.com/@zoomat.oficial" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 p-3 rounded-lg transition">
+                <a href="https://www.tiktok.com/@zoomat.oficial" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 p-3 rounded-xl transition">
                   <Tiktok className="w-6 h-6" />
                 </a>
               </div>
-              <p className="text-green-100 text-sm mt-4">
-                Comparte tus fotos con #ZooMAT
+              <p className="text-emerald-100/90 text-xs mt-4 font-medium">
+                {t("contact.shareHashtag")}
               </p>
             </div>
           </div>
         </div>
 
         {/* Departamentos */}
-        <section className="mt-12 bg-white rounded-xl shadow-lg p-8">
-          <h2 className="text-3xl font-bold text-green-800 mb-6">Departamentos Especializados</h2>
+        <section className="mt-12 bg-white rounded-2xl shadow-xl p-8 border border-emerald-100">
+          <h2 className="text-3xl font-bold text-emerald-950 mb-6">{t("contact.departmentsTitle")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {departments.map((dept, index) => (
-              <div key={index} className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border-2 border-green-200">
-                <h3 className="font-bold text-lg text-green-800 mb-2">{dept.name}</h3>
-                <p className="text-sm text-gray-600 mb-3">{dept.description}</p>
-                <div className="space-y-1 text-sm">
-                  <div className="flex items-center gap-2 text-green-700">
-                    <Mail className="w-4 h-4" />
+              <div key={index} className="bg-gradient-to-br from-emerald-50/70 to-stone-50 rounded-xl p-6 border border-emerald-200/80 shadow-xs">
+                <h3 className="font-bold text-lg text-emerald-900 mb-2">{dept.name}</h3>
+                <p className="text-sm text-stone-600 mb-4">{dept.description}</p>
+                <div className="space-y-1 text-sm font-medium">
+                  <div className="flex items-center gap-2 text-emerald-800">
+                    <Mail className="w-4 h-4 text-emerald-600" />
                     <span className="break-all">{dept.email}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-green-700">
-                    <Phone className="w-4 h-4" />
+                  <div className="flex items-center gap-2 text-emerald-800">
+                    <Phone className="w-4 h-4 text-emerald-600" />
                     <span>{dept.phone}</span>
                   </div>
                 </div>
@@ -247,15 +248,14 @@ export function Contact() {
         </section>
 
         {/* Apoyo */}
-        <section className="mt-12 bg-gradient-to-r from-green-700 to-green-900 text-white rounded-xl shadow-lg p-8 text-center">
-          <Heart className="w-16 h-16 mx-auto mb-4" />
-          <h2 className="text-3xl font-bold mb-4">Apoya al ZooMAT</h2>
-          <p className="text-green-100 text-lg max-w-2xl mx-auto mb-6">
-            Tu apoyo es fundamental para continuar nuestra labor de conservación y educación.
-            Puedes contribuir mediante donaciones, adopciones simbólicas de animales o siendo voluntario.
+        <section className="mt-12 bg-gradient-to-r from-emerald-800 to-emerald-950 text-white rounded-2xl shadow-xl p-8 text-center">
+          <Heart className="w-16 h-16 mx-auto mb-4 text-emerald-300 animate-pulse" />
+          <h2 className="text-3xl font-bold mb-4">{t("contact.supportTitle")}</h2>
+          <p className="text-emerald-100 text-base sm:text-lg max-w-2xl mx-auto mb-6 leading-relaxed">
+            {t("contact.supportDesc")}
           </p>
-          <button className="bg-white text-green-800 px-8 py-3 rounded-lg font-semibold hover:bg-green-50 transition">
-            Conoce Cómo Ayudar
+          <button className="bg-white text-emerald-900 px-8 py-3.5 rounded-xl font-bold hover:bg-emerald-50 transition shadow-md">
+            {t("contact.supportBtn")}
           </button>
         </section>
       </div>
