@@ -174,17 +174,23 @@ export function AnimalCard(animal: AnimalCardProps) {
             </Carousel>
           )}
         </div>
-        <CardContent className="space-y-1 p-4">
+        <CardContent className="space-y-2 p-5 bg-white">
           <div className="flex items-start justify-between gap-2">
             <div>
-              <h3 className="text-green-800">{translateContent(animal.name)}</h3>
-              <p className="text-sm text-gray-600">{animal.species}</p>
+              <h3 className="text-lg font-bold text-emerald-950 leading-tight">{translateContent(animal.name)}</h3>
+              <p className="text-xs italic text-stone-500 font-medium">{animal.species}</p>
             </div>
-            <Badge className={`${getConservationColor(animal.conservation)} text-white`}>
+            <Badge className={`${getConservationColor(animal.conservation)} text-white font-medium text-[11px] px-2.5 py-0.5 shadow-xs`}>
               {translateConservationStatus(animal.conservation)}
             </Badge>
           </div>
-          <p className="text-sm text-gray-500">📍 {t.animalCard.habitatLabel}: {translateContent(animal.habitat)}</p>
+
+          <div className="flex items-center justify-between pt-1 border-t border-stone-100 text-xs text-stone-600">
+            <span className="truncate max-w-[200px]">📍 {t.animalCard.habitatLabel}: {translateContent(animal.habitat)}</span>
+            <span className="inline-flex items-center gap-1 font-semibold text-emerald-700 hover:text-emerald-900 group-hover:underline">
+              Ver ficha & QR &rarr;
+            </span>
+          </div>
         </CardContent>
       </Card>
 
@@ -193,4 +199,4 @@ export function AnimalCard(animal: AnimalCardProps) {
       )}
     </>
   );
-}
+}
