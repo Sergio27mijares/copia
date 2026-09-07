@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import logoZoomat from "../../../assets/logo-zoomat.png";
 
 function Tiktok({ className }: { className?: string }) {
   return (
@@ -28,10 +29,15 @@ export function Footer() {
           {/* Acerca del ZooMAT */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="bg-emerald-800 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg shadow-sm">
-                Z
+              <img
+                src={logoZoomat}
+                alt="Logo Oficial ZooMAT"
+                className="w-14 h-14 rounded-full object-contain bg-white p-1 shadow-md border border-emerald-100"
+              />
+              <div>
+                <h3 className="font-extrabold text-white tracking-tight text-xl leading-tight">ZooMAT</h3>
+                <p className="text-xs text-emerald-300 font-semibold">Miguel Álvarez del Toro</p>
               </div>
-              <h3 className="font-semibold text-white tracking-tight text-xl">ZooMAT</h3>
             </div>
             <p className="text-emerald-200/80 text-sm leading-relaxed">
               {t("footer.about")}

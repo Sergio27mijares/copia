@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router";
 import { Menu, X, MapPin, Phone, Clock, Globe } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import logoZoomat from "../../../assets/logo-zoomat.png";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,16 +30,19 @@ export function Navigation() {
     <nav className="bg-white/90 backdrop-blur-md border-b border-emerald-100 sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition group">
-            <div className="bg-emerald-800 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:bg-emerald-700 transition-colors">
-              Z
-            </div>
+          {/* Logo Oficial ZooMAT */}
+          <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition group">
+            <img
+              src={logoZoomat}
+              alt="Logo Oficial ZooMAT"
+              className="w-12 h-12 rounded-full object-contain bg-white p-0.5 shadow-sm border border-emerald-100 group-hover:scale-105 transition-transform"
+            />
             <div>
-              <div className="font-semibold text-lg tracking-tight text-emerald-950">ZooMAT</div>
-              <div className="text-[10px] text-emerald-600 uppercase tracking-widest font-medium">Chiapas</div>
+              <div className="font-extrabold text-xl tracking-tight text-emerald-950 leading-tight">ZooMAT</div>
+              <div className="text-[10px] text-emerald-700 font-semibold tracking-wider uppercase">Miguel Álvarez del Toro</div>
             </div>
           </Link>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">

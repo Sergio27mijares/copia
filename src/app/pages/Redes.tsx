@@ -108,11 +108,13 @@ export function Redes() {
       <div className="w-full max-w-md z-10 flex-grow flex flex-col justify-center">
         {/* Header/Logo section */}
         <div className="text-center mb-8">
-          <div className="inline-flex bg-emerald-800 text-white w-20 h-20 rounded-3xl items-center justify-center font-bold text-4xl shadow-xl shadow-black/20 border-2 border-emerald-500/20 mb-4 animate-bounce-slow">
-            Z
-          </div>
+          <img
+            src={logoZoomat}
+            alt="Logo Oficial ZooMAT"
+            className="w-24 h-24 rounded-full object-contain bg-white p-1.5 shadow-2xl mx-auto mb-4 border-2 border-emerald-400/30"
+          />
           <h1 className="text-3xl font-extrabold text-white tracking-tight">ZooMAT</h1>
-          <p className="text-emerald-400 text-xs font-bold uppercase tracking-widest mt-1">Chiapas</p>
+          <p className="text-emerald-400 text-xs font-bold uppercase tracking-widest mt-1">Miguel Álvarez del Toro</p>
           <p className="text-emerald-200/80 text-sm mt-3 px-4 leading-relaxed font-medium">
             Enlaces y contactos oficiales del Zoológico Regional Miguel Álvarez del Toro
           </p>

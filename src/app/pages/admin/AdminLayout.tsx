@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Outlet, Link, useLocation } from "react-router";
 import { LayoutDashboard, Users, PawPrint, LogOut, Building2, ChevronDown, Home } from "lucide-react";
 import { useZoo } from "../../context/ZooContext";
+import logoZoomat from "../../../assets/logo-zoomat.png";
 
 export function AdminLayout() {
   const location = useLocation();
@@ -30,10 +31,18 @@ export function AdminLayout() {
       {/* Sidebar */}
       <aside className="w-full md:w-64 bg-emerald-950 text-white flex flex-col">
         {/* Brand */}
-        <div className="p-6 border-b border-emerald-900">
-          <h2 className="text-xl font-bold tracking-tight">ZooMAT</h2>
-          <p className="text-emerald-400 text-xs mt-0.5 font-medium uppercase tracking-wider">Panel de Control</p>
+        <div className="p-6 border-b border-emerald-900 flex items-center gap-3">
+          <img
+            src={logoZoomat}
+            alt="Logo Oficial ZooMAT"
+            className="w-10 h-10 rounded-full object-contain bg-white p-0.5 shadow-sm"
+          />
+          <div>
+            <h2 className="text-xl font-bold tracking-tight text-white leading-tight">ZooMAT</h2>
+            <p className="text-emerald-400 text-[10px] mt-0.5 font-bold uppercase tracking-wider">Panel de Control</p>
+          </div>
         </div>
+
 
         {/* Enclosure badge (for enclosure admins) */}
         {!isSuperAdmin && myEnclosure && (
