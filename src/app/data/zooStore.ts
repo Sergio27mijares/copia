@@ -26,6 +26,7 @@ export interface Animal {
   diet: string;
   funFact: string;
   image: string;
+  audioUrl?: string;
   enclosureId: string | null;
 }
 
@@ -79,6 +80,7 @@ export const INITIAL_ANIMALS: Animal[] = [
     diet: "Carnívoro: pecaríes, venados, tapires, aves y reptiles",
     funFact: "El jaguar tiene la mordida más fuerte de todos los felinos y puede romper el caparazón de una tortuga.",
     image: "/assets/images/jaguar.svg",
+    audioUrl: "https://actions.google.com/sounds/v1/animals/jaguar_roar.ogg",
     enclosureId: null,
   },
   {

@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { Plus, Edit2, Trash2, Search, X, AlertTriangle, MapPin } from "lucide-react";
+import { Plus, Edit2, Trash2, Search, X, AlertTriangle, MapPin, Volume2, QrCode, Download } from "lucide-react";
+import QRCode from "qrcode";
 import { useZoo } from "../../context/ZooContext";
 import {
   Animal,
   ANIMAL_CATEGORIES,
   CONSERVATION_STATUSES,
   STATUS_COLORS,
-  AnimalCategory,
-  ConservationStatus,
 } from "../../data/zooStore";
 
 const emptyForm: Omit<Animal, "id"> = {
@@ -19,8 +18,74 @@ const emptyForm: Omit<Animal, "id"> = {
   diet: "",
   funFact: "",
   image: "",
+  audioUrl: "",
   enclosureId: null,
 };
+
+function QrModal({ animal, onClose }: { animal: Animal; onClose: () => void }) {
+  const qrTargetUrl = typeof window !== 'undefined' ? `${window.location.origin}/especie/${animal.id}` : '';
+  const [qrDataUrl, setQrDataUrl] = useState<string>('');
+
+  useState(() => {
+    QRCode.toDataURL(qrTargetUrl || `Animal: ${animal.name}`, { width: 300, margin: 2 })
+      .then(url => setQrDataUrl(url))
+      .catch(() => setQrDataUrl(''));
+  });
+
+  const downloadQr = async () => {
+    if (!qrTargetUrl) return;
+    try {
+      const dataUrl = await QRCode.toDataURL(qrTargetUrl, { width: 1024, margin: 2 });
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = `QR-${animal.name.replace(/\s+/g, "_")}.png`;
+      link.click();
+    } catch (err) {
+      console.error("Failed to download QR", err);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 text-center" onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose} className="absolute right-4 top-4 p-2 text-gray-400 hover:text-gray-600 rounded-lg">
+          <X size={20} />
+        </button>
+
+        <div className="flex items-center justify-center gap-2 text-emerald-800 font-bold text-xl mb-1">
+          <QrCode className="w-6 h-6 text-emerald-600" />
+          <span>Código QR del Exhibidor</span>
+        </div>
+        <p className="text-xs text-gray-500 mb-4">
+          Código QR oficial para la placa del recinto de <strong className="text-gray-800">{animal.name}</strong>
+        </p>
+
+        <div className="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-4 inline-block mb-4 shadow-sm">
+          {qrDataUrl ? (
+            <img src={qrDataUrl} alt={`QR ${animal.name}`} className="w-56 h-56 mx-auto rounded-lg" />
+          ) : (
+            <div className="w-56 h-56 flex items-center justify-center text-gray-400 text-sm">Generando QR...</div>
+          )}
+        </div>
+
+        <p className="text-xs text-gray-600 font-mono bg-gray-100 p-2 rounded-lg break-all mb-5">
+          {qrTargetUrl}
+        </p>
+
+        <div className="flex gap-3 justify-center">
+          <button
+            onClick={downloadQr}
+            className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow-md transition-colors"
+          >
+            <Download size={18} />
+            Descargar Imagen QR (PNG)
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function AnimalModal({
   animal,
@@ -41,6 +106,7 @@ function AnimalModal({
     diet: animal.diet,
     funFact: animal.funFact,
     image: animal.image,
+    audioUrl: animal.audioUrl || "",
     enclosureId: animal.enclosureId,
   });
 
@@ -59,7 +125,6 @@ function AnimalModal({
         const json = await res.json();
         setForm((p) => ({ ...p, image: json.url }));
       } catch (err) {
-        // eslint-disable-next-line no-console
         console.error('Upload failed', err);
       }
     };
@@ -76,7 +141,6 @@ function AnimalModal({
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.name.trim()) return;
-    // If enclosure_admin, lock to their enclosure
     const saved = currentUser.role === "enclosure_admin"
       ? { ...form, enclosureId: currentUser.enclosureId }
       : form;
@@ -183,6 +247,24 @@ function AnimalModal({
               className="w-full px-3.5 py-2.5 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
           </div>
 
+          {/* Audio URL Input Field */}
+          <div>
+            <label className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1.5">
+              <Volume2 className="w-4 h-4 text-emerald-600" />
+              URL de Audio de la Especie (MP3 / Sonido Real)
+            </label>
+            <input
+              name="audioUrl"
+              value={form.audioUrl || ""}
+              onChange={handle}
+              placeholder="https://ejemplo.com/audio-jaguar.mp3"
+              className="w-full px-3.5 py-2.5 border border-emerald-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-emerald-50/40 text-sm"
+            />
+            <p className="text-[11px] text-gray-500 mt-1">
+              Ingresa el enlace al archivo de audio en formato MP3 u OGG que se reproducirá en el reproductor del visitante.
+            </p>
+          </div>
+
           <div>
             <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Dato Curioso</label>
             <textarea name="funFact" value={form.funFact} onChange={handle} rows={3}
@@ -252,10 +334,10 @@ export function AdminAnimals() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterEnclosure, setFilterEnclosure] = useState<string>("all");
   const [modalState, setModalState] = useState<{ open: boolean; animal: Animal | null }>({ open: false, animal: null });
+  const [qrModalAnimal, setQrModalAnimal] = useState<Animal | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Animal | null>(null);
   const [nextId, setNextId] = useState(100);
 
-  // Enclosure admins only see their enclosure's animals
   const scopedAnimals = currentUser.role === "enclosure_admin"
     ? animals.filter((a) => a.enclosureId === currentUser.enclosureId)
     : animals;
@@ -340,10 +422,10 @@ export function AdminAnimals() {
               <tr className="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
                 <th className="p-4 font-semibold border-b border-gray-100 w-12"></th>
                 <th className="p-4 font-semibold border-b border-gray-100">Especie</th>
-                <th className="p-4 font-semibold border-b border-gray-100">Categoría</th>
+                <th className="p-4 font-semibold border-b border-gray-100">Audio</th>
                 <th className="p-4 font-semibold border-b border-gray-100">Recinto</th>
                 <th className="p-4 font-semibold border-b border-gray-100">Conservación</th>
-                <th className="p-4 font-semibold border-b border-gray-100 text-right">Acciones</th>
+                <th className="p-4 font-semibold border-b border-gray-100 text-right">Acciones & QR</th>
               </tr>
             </thead>
             <tbody>
@@ -366,7 +448,15 @@ export function AdminAnimals() {
                       <p className="font-semibold text-gray-900">{animal.name}</p>
                       <p className="text-xs text-gray-400 italic mt-0.5">{animal.scientificName}</p>
                     </td>
-                    <td className="p-4 text-gray-600 text-sm">{animal.category}</td>
+                    <td className="p-4">
+                      {animal.audioUrl ? (
+                        <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
+                          <Volume2 size={13} /> Con Audio
+                        </span>
+                      ) : (
+                        <span className="text-xs text-gray-400 italic">Sin audio</span>
+                      )}
+                    </td>
                     <td className="p-4">
                       {enc ? (
                         <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full text-white ${enc.color}`}>
@@ -382,6 +472,14 @@ export function AdminAnimals() {
                       </span>
                     </td>
                     <td className="p-4 text-right space-x-1">
+                      <button
+                        onClick={() => setQrModalAnimal(animal)}
+                        className="p-2 text-emerald-700 hover:bg-emerald-100 rounded-lg transition-colors font-bold text-xs inline-flex items-center gap-1 bg-emerald-50 border border-emerald-200"
+                        title="Generar Código QR"
+                      >
+                        <QrCode size={16} />
+                        <span>Generar QR</span>
+                      </button>
                       <button onClick={() => setModalState({ open: true, animal })}
                         className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors" title="Editar">
                         <Edit2 size={16} />
@@ -410,6 +508,9 @@ export function AdminAnimals() {
           onSave={handleSave}
           onClose={() => setModalState({ open: false, animal: null })}
         />
+      )}
+      {qrModalAnimal && (
+        <QrModal animal={qrModalAnimal} onClose={() => setQrModalAnimal(null)} />
       )}
       {deleteTarget && (
         <DeleteDialog animal={deleteTarget} onConfirm={handleDelete} onClose={() => setDeleteTarget(null)} />
