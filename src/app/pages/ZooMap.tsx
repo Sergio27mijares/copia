@@ -101,29 +101,29 @@ export function ZooMap() {
     <div className="min-h-screen bg-gradient-to-br from-emerald-50/60 via-stone-50 to-emerald-100/50">
       {/* Header Banner */}
       <section className="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white py-16 shadow-md">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-2 text-emerald-300 font-semibold text-sm uppercase tracking-wider">
-            <Compass className="w-5 h-5 text-emerald-400" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center gap-3 mb-2 text-amber-300 font-extrabold text-sm uppercase tracking-wider">
+            <Compass className="w-5 h-5 text-amber-400" />
             <span>{isEs ? "Navegación del Parque" : "Park Navigation"}</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight">{t("mapPage.title")}</h1>
-          <p className="text-lg sm:text-xl text-emerald-100/90 font-medium max-w-2xl">
+          <h1 className="text-4xl sm:text-6xl font-black mb-4 tracking-tight">{t("mapPage.title")}</h1>
+          <p className="text-lg sm:text-2xl text-emerald-100 font-semibold max-w-3xl">
             {t("mapPage.subtitle")}
           </p>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 space-y-12">
         {/* Mapa Interactivo con Google Maps Real */}
-        <section className="bg-white rounded-2xl shadow-xl overflow-hidden border border-emerald-100">
-          <div className="p-6 sm:p-8 bg-gradient-to-r from-emerald-900 to-emerald-950 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="bg-white/10 p-3 rounded-xl">
-                <MapPin className="w-7 h-7 text-emerald-300" />
+        <section className="bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-emerald-100">
+          <div className="p-6 sm:p-8 bg-gradient-to-r from-emerald-900 to-emerald-950 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-b-4 border-amber-400">
+            <div className="flex items-center gap-4">
+              <div className="bg-emerald-800 p-3.5 rounded-2xl border border-emerald-700">
+                <MapPin className="w-8 h-8 text-amber-400" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold">{t("mapPage.generalPlan")}</h2>
-                <p className="text-xs sm:text-sm text-emerald-200/80">
+                <h2 className="text-2xl sm:text-3xl font-black">{t("mapPage.generalPlan")}</h2>
+                <p className="text-sm sm:text-base text-emerald-200 font-medium mt-1">
                   Calzada Cerro Hueco S/N, Col. El Zapotal, Tuxtla Gutiérrez, Chiapas.
                 </p>
               </div>
@@ -132,11 +132,11 @@ export function ZooMap() {
               href={googleMapsDirectionsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-bold px-5 py-2.5 rounded-xl transition shadow-md text-sm shrink-0"
+              className="inline-flex items-center gap-2.5 bg-amber-400 hover:bg-amber-300 text-emerald-950 font-black px-6 py-3.5 rounded-2xl transition shadow-lg text-base shrink-0 hover:scale-105"
             >
-              <Navigation className="w-4 h-4" />
+              <Navigation className="w-5 h-5" />
               <span>{t("mapPage.directions")}</span>
-              <ExternalLink className="w-4 h-4" />
+              <ExternalLink className="w-5 h-5" />
             </a>
           </div>
 

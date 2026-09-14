@@ -52,101 +52,110 @@ export function Visit() {
 
       <div className="max-w-7xl mx-auto px-4 py-12 space-y-10">
         {/* Horarios */}
-        <section className="bg-white rounded-3xl shadow-xl p-8 border border-emerald-100">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="bg-emerald-100 p-2.5 rounded-2xl text-emerald-800">
-              <Clock className="w-7 h-7" />
+        <section className="bg-white rounded-3xl shadow-xl p-8 md:p-10 border-2 border-emerald-100">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="bg-emerald-700 p-3.5 rounded-2xl text-white shadow-md">
+              <Clock className="w-8 h-8" />
             </div>
-            <h2 className="text-3xl font-extrabold text-emerald-950">{isEs ? "Horarios de Apertura" : "Opening Hours"}</h2>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-black text-emerald-950">{isEs ? "Horarios de Apertura" : "Opening Hours"}</h2>
+              <p className="text-base text-emerald-800 font-semibold">{isEs ? "Planifica tu tiempo para recorrer los senderos con tranquilidad" : "Plan your time to walk the trails at a leisurely pace"}</p>
+            </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {schedule.map((item, index) => (
-              <div key={index} className="border-l-4 border-emerald-600 bg-emerald-50/40 p-5 rounded-r-2xl">
-                <div className="font-bold text-lg text-stone-800">{item.day}</div>
-                <div className="text-2xl text-emerald-800 font-extrabold mt-1">{item.hours}</div>
-                <div className="text-xs text-stone-600 mt-1 font-medium">{item.note}</div>
+              <div key={index} className="border-l-8 border-emerald-600 bg-emerald-50/70 p-6 rounded-r-3xl shadow-xs">
+                <div className="font-extrabold text-xl text-emerald-950">{item.day}</div>
+                <div className="text-3xl text-emerald-800 font-black mt-2">{item.hours}</div>
+                <div className="text-base text-emerald-900 mt-2 font-bold">{item.note}</div>
               </div>
             ))}
           </div>
         </section>
 
         {/* Precios */}
-        <section className="bg-white rounded-3xl shadow-xl p-8 border border-emerald-100">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="bg-emerald-100 p-2.5 rounded-2xl text-emerald-800">
-              <Ticket className="w-7 h-7" />
+        <section className="bg-white rounded-3xl shadow-xl p-8 md:p-10 border-2 border-emerald-100">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="bg-emerald-700 p-3.5 rounded-2xl text-white shadow-md">
+              <Ticket className="w-8 h-8" />
             </div>
-            <h2 className="text-3xl font-extrabold text-emerald-950">{isEs ? "Precios de Entrada" : "Admission Prices"}</h2>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-black text-emerald-950">{isEs ? "Precios de Entrada" : "Admission Prices"}</h2>
+              <p className="text-base text-emerald-800 font-semibold">{isEs ? "Cuotas de acceso destinadas a la manutención y conservación animal" : "Access fees dedicated to animal care and conservation"}</p>
+            </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {prices.map((item, index) => (
-              <div key={index} className="bg-gradient-to-br from-emerald-50/80 to-stone-50 rounded-2xl p-6 border border-emerald-200/80 shadow-xs">
-                <div className="font-bold text-base text-stone-800 mb-1">{item.type}</div>
-                <div className="text-3xl font-extrabold text-emerald-800 mb-2">{item.price}</div>
-                <div className="text-xs text-stone-600 font-medium">{item.description}</div>
+              <div key={index} className="bg-gradient-to-br from-emerald-50 to-stone-50 rounded-3xl p-7 border-2 border-emerald-200/80 shadow-sm hover:shadow-md transition-all">
+                <div className="font-bold text-lg text-emerald-950 mb-1">{item.type}</div>
+                <div className="text-4xl font-black text-emerald-800 mb-2">{item.price}</div>
+                <div className="text-sm text-emerald-900 font-semibold">{item.description}</div>
               </div>
             ))}
           </div>
-          <div className="mt-6 bg-emerald-50 border-l-4 border-emerald-600 p-4 rounded-2xl">
-            <div className="flex items-start gap-3">
-              <CreditCard className="w-5 h-5 text-emerald-700 mt-0.5 shrink-0" />
+          <div className="mt-8 bg-amber-50 border-l-8 border-amber-400 p-6 rounded-2xl border border-amber-200 shadow-xs">
+            <div className="flex items-start gap-4">
+              <CreditCard className="w-7 h-7 text-amber-700 mt-0.5 shrink-0" />
               <div>
-                <p className="font-bold text-emerald-950 text-sm">{isEs ? "Métodos de Pago" : "Payment Methods"}</p>
-                <p className="text-xs text-emerald-800">{isEs ? "Aceptamos efectivo en taquilla y tarjetas de crédito/débito." : "We accept cash at the ticket office and credit/debit cards."}</p>
+                <p className="font-black text-emerald-950 text-lg">{isEs ? "Métodos de Pago" : "Payment Methods"}</p>
+                <p className="text-base text-emerald-900 font-medium">{isEs ? "Aceptamos efectivo en taquilla y tarjetas de crédito/débito." : "We accept cash at the ticket office and credit/debit cards."}</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Ubicación */}
-        <section className="bg-white rounded-3xl shadow-xl p-8 border border-emerald-100">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="bg-emerald-100 p-2.5 rounded-2xl text-emerald-800">
-              <MapPin className="w-7 h-7" />
+        <section className="bg-white rounded-3xl shadow-xl p-8 md:p-10 border-2 border-emerald-100">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="bg-emerald-700 p-3.5 rounded-2xl text-white shadow-md">
+              <MapPin className="w-8 h-8" />
             </div>
-            <h2 className="text-3xl font-extrabold text-emerald-950">{isEs ? "Cómo Llegar" : "How to Get There"}</h2>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-black text-emerald-950">{isEs ? "Cómo Llegar" : "How to Get There"}</h2>
+              <p className="text-base text-emerald-800 font-semibold">{isEs ? "Ubicación estratégica en Tuxtla Gutiérrez" : "Strategic location in Tuxtla Gutiérrez"}</p>
+            </div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-bold text-base text-emerald-900 mb-2">{isEs ? "Dirección Oficial" : "Official Address"}</h3>
-                <p className="text-stone-700 text-sm leading-relaxed">
+            <div className="space-y-7">
+              <div className="bg-emerald-50/60 p-6 rounded-2xl border border-emerald-200">
+                <h3 className="font-black text-xl text-emerald-950 mb-2">{isEs ? "Dirección Oficial" : "Official Address"}</h3>
+                <p className="text-emerald-900 text-base font-semibold leading-relaxed">
                   Calzada Cerro Hueco S/N<br />
                   Col. El Zapotal, C.P. 29094<br />
                   Tuxtla Gutiérrez, Chiapas, México
                 </p>
               </div>
-              <div>
-                <h3 className="font-bold text-base text-emerald-900 mb-2 flex items-center gap-2">
-                  <Car className="w-5 h-5 text-emerald-600" />
+              <div className="bg-emerald-50/60 p-6 rounded-2xl border border-emerald-200">
+                <h3 className="font-black text-xl text-emerald-950 mb-2 flex items-center gap-3">
+                  <Car className="w-6 h-6 text-emerald-700" />
                   {isEs ? "En Vehículo Particular" : "By Car"}
                 </h3>
-                <p className="text-stone-700 text-sm leading-relaxed">
+                <p className="text-emerald-900 text-base font-medium leading-relaxed">
                   {isEs
                     ? "Ubicado a solo 15 minutos del centro de Tuxtla Gutiérrez tomando la Calzada Cerro Hueco. Estacionamiento amplio y gratuito disponible."
                     : "Located just 15 minutes from downtown Tuxtla Gutiérrez via Cerro Hueco Road. Ample free parking available."}
                 </p>
               </div>
-              <div>
-                <h3 className="font-bold text-base text-emerald-900 mb-2 flex items-center gap-2">
-                  <Bus className="w-5 h-5 text-emerald-600" />
+              <div className="bg-emerald-50/60 p-6 rounded-2xl border border-emerald-200">
+                <h3 className="font-black text-xl text-emerald-950 mb-2 flex items-center gap-3">
+                  <Bus className="w-6 h-6 text-emerald-700" />
                   {isEs ? "Transporte Público" : "Public Transportation"}
                 </h3>
-                <p className="text-stone-700 text-sm leading-relaxed">
+                <p className="text-emerald-900 text-base font-medium leading-relaxed">
                   {isEs
-                    ? "Rutas de colectivo locales hacia 'Cerro Hueco' o 'El Zapotal'. Pide al conductor la bajada directa en la entrada del ZooMAT."
-                    : "Take local transport routes towards 'Cerro Hueco' or 'El Zapotal'. Ask the driver for the ZooMAT entrance stop."}
+                    ? "Rutas de colectivo locales hacia 'Cerro Hueco' o 'El Zapotal'. Pide al conductor la bajada directa en la entrada principal del ZooMAT."
+                    : "Take local transport routes towards 'Cerro Hueco' or 'El Zapotal'. Ask the driver for the ZooMAT main entrance stop."}
                 </p>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-emerald-900 to-emerald-950 rounded-2xl p-8 text-white flex flex-col justify-between shadow-lg">
+            <div className="bg-gradient-to-br from-emerald-900 to-emerald-950 rounded-3xl p-8 text-white flex flex-col justify-between shadow-2xl border-4 border-amber-400/60">
               <div>
-                <MapPin className="w-12 h-12 text-emerald-400 mb-4" />
-                <h3 className="text-2xl font-bold mb-2">{isEs ? "Reserva Natural El Zapotal" : "El Zapotal Nature Reserve"}</h3>
-                <p className="text-emerald-200 text-sm leading-relaxed mb-6">
+                <MapPin className="w-14 h-14 text-amber-400 mb-4" />
+                <h3 className="text-3xl font-black mb-3">{isEs ? "Reserva Natural El Zapotal" : "El Zapotal Nature Reserve"}</h3>
+                <p className="text-emerald-100 text-lg leading-relaxed mb-6 font-medium">
                   {isEs
-                    ? "100 hectáreas de selva mediana subperennifolia protegidas para la conservación de especies nativas."
-                    : "100 hectares of protected semi-evergreen jungle for the conservation of native species."}
+                    ? "100 hectáreas de selva mediana subperennifolia protegidas para la conservación e investigación de la fauna silvestre nativa de Chiapas."
+                    : "100 hectares of protected semi-evergreen jungle for the conservation and research of native Chiapas wildlife."}
                 </p>
               </div>
               <a

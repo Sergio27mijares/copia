@@ -152,23 +152,36 @@ export function Home() {
         
         <div className="relative max-w-7xl mx-auto px-4 py-24 md:py-32 flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100/80 text-emerald-800 text-xs font-bold tracking-widest uppercase mb-6 shadow-sm border border-emerald-200">
-              <TreePine className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-900 text-sm font-extrabold tracking-wide uppercase mb-6 shadow-sm border border-emerald-300">
+              <TreePine className="w-4 h-4 text-emerald-700" />
               <span>{t("home.hero.tag")}</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-emerald-950">
-              {t("home.hero.title1")}<span className="text-emerald-700">{t("home.hero.titleHighlight")}</span>{t("home.hero.title2")}
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black mb-6 tracking-tight text-emerald-950 leading-[1.1]">
+              {t("home.hero.title1")}<span className="text-emerald-700 underline decoration-amber-400 decoration-wavy decoration-2">{t("home.hero.titleHighlight")}</span>{t("home.hero.title2")}
             </h1>
-            <p className="text-lg md:text-xl text-emerald-800/80 mb-8 leading-relaxed max-w-2xl font-medium">
-              {t("home.hero.desc")}
+            <p className="text-xl md:text-2xl text-emerald-900/90 mb-10 leading-relaxed max-w-2xl font-semibold">
+              El único zoológico en México dedicado exclusivamente a la conservación, exhibición e investigación de la <span className="text-emerald-950 font-bold underline">fauna silvestre nativa del estado de Chiapas</span> en su entorno selvático natural.
             </p>
-            <div className="flex flex-wrap gap-4">
-              
-              
+            <div className="flex flex-wrap gap-5">
+              <Link
+                to="/visita"
+                className="inline-flex items-center gap-3 bg-emerald-800 hover:bg-emerald-900 text-white px-8 py-4 rounded-2xl text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+              >
+                <Ticket className="w-5 h-5 text-amber-300" />
+                <span>{t("home.hero.planVisit")}</span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                to="/animales"
+                className="inline-flex items-center gap-3 bg-white hover:bg-emerald-50 text-emerald-950 border-2 border-emerald-300 px-8 py-4 rounded-2xl text-lg font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all"
+              >
+                <BookOpen className="w-5 h-5 text-emerald-700" />
+                <span>{t("home.hero.exploreCatalog")}</span>
+              </Link>
             </div>
           </div>
           <div className="flex-1 w-full relative">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-emerald-200 border-8 border-white shadow-2xl relative rotate-2 hover:rotate-0 transition-transform duration-500">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-emerald-200 border-8 border-white shadow-2xl relative rotate-1 hover:rotate-0 transition-transform duration-500">
               <HeroCarousel />
             </div>
           </div>
@@ -177,52 +190,91 @@ export function Home() {
 
       {/* Highlights */}
       <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
             {highlights.map((item, index) => (
-              <div key={index} className="flex flex-col items-start p-8 rounded-2xl bg-emerald-50/50 border border-emerald-100 hover:bg-emerald-50 transition-colors">
-                <div className="bg-emerald-100 p-3 rounded-xl mb-6 text-emerald-700">
-                  <item.icon className="w-6 h-6" />
+              <div key={index} className="flex flex-col items-start p-8 rounded-3xl bg-emerald-50/70 border-2 border-emerald-100 hover:border-emerald-300 hover:bg-emerald-50 transition-all shadow-sm hover:shadow-md">
+                <div className="bg-emerald-700 p-4 rounded-2xl mb-6 text-white shadow-md">
+                  <item.icon className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-bold text-emerald-950 mb-3 tracking-tight">{item.title}</h3>
-                <p className="text-emerald-800/70 leading-relaxed font-medium">{item.description}</p>
+                <h3 className="text-2xl font-black text-emerald-950 mb-3 tracking-tight">{item.title}</h3>
+                <p className="text-emerald-900/80 leading-relaxed font-medium text-lg">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Special Feature: Don Miguel & El Pavón */}
+      <section className="py-20 bg-emerald-950 text-white border-y-4 border-amber-400 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex-1 space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400 text-emerald-950 text-xs font-black tracking-widest uppercase">
+              ★ Símbolo Institucional del ZooMAT
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
+              El Pavón del Hornillo <span className="text-amber-300 italic font-serif block text-2xl md:text-3xl font-normal mt-1">(Oreophasis derbianus)</span>
+            </h2>
+            <p className="text-emerald-100 text-lg md:text-xl leading-relaxed font-normal">
+              Ave mítica de las nieblas de Chiapas y símbolo emblemático del zoológico. Fundado en 1942 por el ilustre naturalista **Don Miguel Álvarez del Toro**, el ZooMAT alberga y protege especies endémicas amenazadas en la Reserva El Zapotal.
+            </p>
+            <div className="pt-2">
+              <Link
+                to="/animales?id=pavon"
+                className="inline-flex items-center gap-3 bg-amber-400 hover:bg-amber-300 text-emerald-950 px-7 py-3.5 rounded-xl font-black text-base shadow-lg transition-transform hover:scale-105"
+              >
+                <span>Conocer al Pavón</span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+          <div className="w-full lg:w-96 aspect-square rounded-3xl overflow-hidden border-4 border-amber-400/50 shadow-2xl relative">
+            <img
+              src="/assets/images/placeholder.svg"
+              alt="El Pavón - Ave Símbolo del ZooMAT"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-0 inset-x-0 bg-emerald-950/90 p-4 text-center text-xs font-bold text-amber-300 uppercase tracking-wider">
+              El Zapotal • Tuxtla Gutiérrez, Chiapas
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Animals */}
-      <section className="py-24 bg-emerald-50/50 border-y border-emerald-100">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+      <section className="py-24 bg-emerald-50/60 border-b border-emerald-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-6">
             <div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-emerald-950 mb-3 tracking-tight">{t("home.featured.title")}</h2>
-              <p className="text-emerald-800/70 max-w-xl font-medium">{t("home.featured.desc")}</p>
+              <h2 className="text-3xl sm:text-5xl font-black text-emerald-950 mb-4 tracking-tight">{t("home.featured.title")}</h2>
+              <p className="text-emerald-900/80 max-w-2xl font-semibold text-lg md:text-xl">{t("home.featured.desc")}</p>
             </div>
             <Link
               to="/animales"
-              className="text-sm font-bold text-emerald-700 hover:text-emerald-900 transition-colors flex items-center gap-1 group bg-emerald-100/50 px-4 py-2 rounded-full"
+              className="text-base font-bold text-emerald-900 hover:text-emerald-950 transition-colors flex items-center gap-2 bg-emerald-200/80 hover:bg-emerald-200 px-6 py-3 rounded-xl border border-emerald-300 shadow-xs"
             >
-              {t("home.featured.viewAll")}
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <span>{t("home.featured.viewAll")}</span>
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredAnimals.map((animal, index) => (
-              <div key={index} className="bg-white rounded-2xl overflow-hidden border border-emerald-100 shadow-sm hover:shadow-xl hover:shadow-emerald-900/10 transition-all duration-300 group">
-                <div className="relative h-64 overflow-hidden bg-emerald-100">
+              <div key={index} className="bg-white rounded-3xl overflow-hidden border-2 border-emerald-100 shadow-md hover:shadow-xl hover:shadow-emerald-900/10 transition-all duration-300 group">
+                <div className="relative h-72 overflow-hidden bg-emerald-100">
                   <img
                     src={animal.image}
                     alt={animal.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                   />
-                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-lg text-xs font-bold text-emerald-900 shadow-sm">
+                  <div className="absolute top-4 left-4 bg-emerald-950 text-white px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider shadow-md">
                     {animal.status}
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-emerald-950">{animal.name}</h3>
+                <div className="p-7 flex items-center justify-between">
+                  <h3 className="text-2xl font-black text-emerald-950">{animal.name}</h3>
+                  <Link to="/animales" className="text-emerald-700 hover:text-emerald-900 font-bold text-sm bg-emerald-50 px-3.5 py-2 rounded-lg border border-emerald-200">
+                    Ver más →
+                  </Link>
                 </div>
               </div>
             ))}

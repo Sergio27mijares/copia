@@ -23,57 +23,55 @@ export function AnimalCard({
   statusColor,
 }: AnimalCardProps) {
   return (
-    <Card className="overflow-hidden bg-white border border-emerald-100 shadow-sm hover:shadow-xl hover:shadow-emerald-900/5 transition-all duration-300 group">
+    <Card className="overflow-hidden bg-white border-2 border-emerald-100/80 shadow-md hover:shadow-2xl hover:border-emerald-300 transition-all duration-300 group rounded-3xl flex flex-col h-full">
       {/* Imagen del animal */}
-      <div className="relative h-64 overflow-hidden bg-emerald-50">
+      <div className="relative h-72 overflow-hidden bg-emerald-50">
         <img
           src={image}
           alt={name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
         />
+        <div className={`absolute top-4 right-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wide shadow-md ${statusColor}`}>
+          <AlertCircle className="w-4 h-4" />
+          <span>{status}</span>
+        </div>
       </div>
 
       {/* Contenido informativo */}
-      <div className="p-6 md:p-8 space-y-6">
+      <div className="p-6 md:p-8 space-y-5 flex-1 flex flex-col justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-emerald-950 tracking-tight">{name}</h2>
-          <p className="text-sm text-emerald-600 italic mt-1 font-medium">{scientificName}</p>
+          <h2 className="text-2xl md:text-3xl font-black text-emerald-950 tracking-tight leading-snug">{name}</h2>
+          <p className="text-base text-emerald-700 italic font-semibold mt-1">({scientificName})</p>
         </div>
 
-        {/* Estado de conservación */}
-        <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm ${statusColor}`}>
-          <AlertCircle className="w-3.5 h-3.5" />
-          <span>{status}</span>
-        </div>
-
-        <div className="space-y-4">
+        <div className="space-y-4 pt-2">
           {/* Hábitat */}
-          <div className="flex items-start gap-3">
-            <div className="bg-emerald-50 p-1.5 rounded-md mt-0.5">
-              <MapPin className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+          <div className="flex items-start gap-3.5">
+            <div className="bg-emerald-100 p-2 rounded-xl mt-0.5 text-emerald-800">
+              <MapPin className="w-4 h-4 flex-shrink-0" />
             </div>
             <div>
-              <p className="text-[10px] font-bold text-emerald-700/70 uppercase tracking-widest">Hábitat</p>
-              <p className="text-sm text-emerald-900 mt-0.5 leading-relaxed font-medium">{habitat}</p>
+              <p className="text-xs font-extrabold text-emerald-800 uppercase tracking-wider">Hábitat</p>
+              <p className="text-base text-emerald-950 font-medium leading-snug">{habitat}</p>
             </div>
           </div>
 
           {/* Dieta */}
-          <div className="flex items-start gap-3">
-            <div className="bg-emerald-50 p-1.5 rounded-md mt-0.5">
-              <Info className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+          <div className="flex items-start gap-3.5">
+            <div className="bg-emerald-100 p-2 rounded-xl mt-0.5 text-emerald-800">
+              <Info className="w-4 h-4 flex-shrink-0" />
             </div>
             <div>
-              <p className="text-[10px] font-bold text-emerald-700/70 uppercase tracking-widest">Alimentación</p>
-              <p className="text-sm text-emerald-900 mt-0.5 leading-relaxed font-medium">{diet}</p>
+              <p className="text-xs font-extrabold text-emerald-800 uppercase tracking-wider">Alimentación</p>
+              <p className="text-base text-emerald-950 font-medium leading-snug">{diet}</p>
             </div>
           </div>
         </div>
 
         {/* Dato curioso */}
-        <div className="pt-6 border-t border-emerald-100">
-          <p className="text-sm text-emerald-800/80 leading-relaxed bg-emerald-50/50 p-4 rounded-xl border border-emerald-100">
-            <span className="font-bold text-emerald-900 block mb-1">Sabías que... </span>
+        <div className="pt-4 border-t border-emerald-100">
+          <p className="text-base text-emerald-900 leading-relaxed bg-emerald-50/70 p-4 rounded-2xl border border-emerald-200">
+            <span className="font-extrabold text-emerald-950 block mb-1 text-sm uppercase tracking-wide">💡 DATO INTERESANTE</span>
             {funFact}
           </p>
         </div>

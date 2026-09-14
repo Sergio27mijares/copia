@@ -27,92 +27,93 @@ export function Navigation() {
   };
 
   return (
-    <nav className="bg-white/90 backdrop-blur-md border-b border-emerald-100 sticky top-0 z-50 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+    <nav className="bg-white/95 backdrop-blur-md border-b border-emerald-200 sticky top-0 z-50 shadow-sm transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-24">
           {/* Logo Oficial ZooMAT */}
-          <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition group">
+          <Link to="/" className="flex items-center gap-3.5 hover:opacity-95 transition group">
             <img
               src={logoZoomat}
               alt="Logo Oficial ZooMAT"
-              className="w-12 h-12 rounded-full object-contain bg-white p-0.5 shadow-sm border border-emerald-100 group-hover:scale-105 transition-transform"
+              className="w-14 h-14 rounded-full object-contain bg-white p-1 shadow-md border-2 border-emerald-200 group-hover:scale-105 transition-transform"
             />
             <div>
-              <div className="font-extrabold text-xl tracking-tight text-emerald-950 leading-tight">ZooMAT</div>
-              <div className="text-[10px] text-emerald-700 font-semibold tracking-wider uppercase">Miguel Álvarez del Toro</div>
+              <div className="font-black text-2xl md:text-3xl tracking-tight text-emerald-950 leading-none">
+                ZooMAT
+              </div>
+              <div className="text-xs md:text-sm text-emerald-800 font-bold tracking-wide uppercase mt-1">
+                Miguel Álvarez del Toro
+              </div>
             </div>
           </Link>
 
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex items-center gap-9">
             {links.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`text-sm font-medium transition-colors relative py-2 ${
+                className={`text-base lg:text-lg font-bold transition-all relative py-2.5 ${
                   isActive(link.to)
-                    ? "text-emerald-800"
-                    : "text-gray-500 hover:text-emerald-700"
+                    ? "text-emerald-900"
+                    : "text-gray-700 hover:text-emerald-700"
                 }`}
               >
                 {link.label}
                 {isActive(link.to) && (
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 rounded-t-full"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-emerald-600 rounded-full shadow-xs"></span>
                 )}
               </Link>
             ))}
           </div>
 
-          {/* Quick Info Desktop */}
-          <div className="hidden lg:flex items-center gap-4">
-            <div className="flex items-center gap-2 text-xs text-emerald-700 font-medium bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100">
-              <Clock className="w-3.5 h-3.5" />
-              <span>9:00 - 17:00</span>
+          {/* Quick Info & Language Selector Desktop */}
+          <div className="hidden lg:flex items-center gap-5">
+            <div className="flex items-center gap-2 text-sm font-semibold text-emerald-900 bg-emerald-50 px-4 py-2 rounded-full border border-emerald-200 shadow-xs">
+              <Clock className="w-4 h-4 text-emerald-700" />
+              <span>Mar-Dom: 8:30 - 16:30</span>
             </div>
             
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 text-xs font-semibold text-emerald-900 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-full hover:bg-emerald-100 transition-all shadow-xs"
+              className="flex items-center gap-2 text-sm font-bold text-emerald-950 bg-amber-100 hover:bg-amber-200 border-2 border-amber-300 px-4 py-2 rounded-full transition-all shadow-sm cursor-pointer"
               title="Cambiar idioma / Change language"
             >
-              <Globe className="w-3.5 h-3.5 text-emerald-600" />
+              <Globe className="w-4 h-4 text-amber-800" />
               <span>{i18n.language === 'es' ? '🇲🇽 ES' : '🇺🇸 EN'}</span>
-              <span className="text-[10px] text-emerald-600 font-bold ml-0.5">({i18n.language === 'es' ? 'Cambiar a EN' : 'Switch to ES'})</span>
             </button>
           </div>
 
           {/* Mobile Menu Button & Language Toggle */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-3 md:hidden">
             <button
               onClick={toggleLanguage}
-              className="p-2 text-emerald-900 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition border border-emerald-200 flex items-center gap-1 text-xs font-bold"
+              className="p-2.5 text-emerald-950 bg-amber-100 hover:bg-amber-200 rounded-xl transition border border-amber-300 flex items-center gap-1.5 text-sm font-bold shadow-xs"
             >
-              <Globe className="w-4 h-4 text-emerald-600" />
+              <Globe className="w-4 h-4 text-amber-800" />
               <span>{i18n.language === 'es' ? 'ES' : 'EN'}</span>
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-emerald-800 hover:bg-emerald-50 rounded-lg transition"
+              className="p-2.5 text-emerald-900 hover:bg-emerald-100 rounded-xl transition border border-emerald-200"
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
-
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Drawer */}
         {isOpen && (
-          <div className="md:hidden py-6 border-t border-emerald-100">
+          <div className="md:hidden py-6 border-t border-emerald-200 bg-white/95 backdrop-blur-md rounded-b-2xl shadow-xl px-2">
             {links.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-lg transition text-sm mb-1 ${
+                className={`block px-5 py-3.5 rounded-xl transition text-base font-bold mb-1.5 ${
                   isActive(link.to)
-                    ? "bg-emerald-50 text-emerald-800 font-semibold"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-emerald-700"
+                    ? "bg-emerald-700 text-white shadow-sm"
+                    : "text-gray-800 hover:bg-emerald-50 hover:text-emerald-900"
                 }`}
               >
                 {link.label}

@@ -29,34 +29,33 @@ export function AdminLayout() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row">
       {/* Sidebar */}
-      <aside className="w-full md:w-64 bg-emerald-950 text-white flex flex-col">
+      <aside className="w-full md:w-72 bg-emerald-950 text-white flex flex-col border-r-2 border-emerald-900 shadow-xl">
         {/* Brand */}
-        <div className="p-6 border-b border-emerald-900 flex items-center gap-3">
+        <div className="p-6 border-b border-emerald-900 flex items-center gap-4">
           <img
             src={logoZoomat}
             alt="Logo Oficial ZooMAT"
-            className="w-10 h-10 rounded-full object-contain bg-white p-0.5 shadow-sm"
+            className="w-12 h-12 rounded-full object-contain bg-white p-1 shadow-md border-2 border-emerald-400"
           />
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-white leading-tight">ZooMAT</h2>
-            <p className="text-emerald-400 text-[10px] mt-0.5 font-bold uppercase tracking-wider">Panel de Control</p>
+            <h2 className="text-2xl font-black tracking-tight text-white leading-tight">ZooMAT</h2>
+            <p className="text-amber-400 text-xs font-black uppercase tracking-wider mt-0.5">Panel de Control</p>
           </div>
         </div>
 
-
         {/* Enclosure badge (for enclosure admins) */}
         {!isSuperAdmin && myEnclosure && (
-          <div className={`mx-4 mt-4 ${myEnclosure.color} rounded-xl p-3 flex items-center gap-2`}>
-            <span className="text-2xl">{myEnclosure.icon}</span>
+          <div className={`mx-4 mt-4 ${myEnclosure.color} rounded-2xl p-4 flex items-center gap-3 shadow-md border border-white/20`}>
+            <span className="text-3xl">{myEnclosure.icon}</span>
             <div>
-              <p className="text-white font-bold text-sm leading-tight">{myEnclosure.name}</p>
-              <p className="text-white/70 text-xs">Tu recinto</p>
+              <p className="text-white font-black text-base leading-tight">{myEnclosure.name}</p>
+              <p className="text-white/80 text-xs font-bold uppercase tracking-wider mt-0.5">Tu Recinto Asignado</p>
             </div>
           </div>
         )}
 
         {/* Nav */}
-        <nav className="flex-1 px-3 py-4 space-y-1">
+        <nav className="flex-1 px-4 py-6 space-y-2">
           {menuItems.map((item) => {
             const isActive = item.path === "/admin"
               ? location.pathname === "/admin"
@@ -66,13 +65,13 @@ export function AdminLayout() {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-colors text-sm font-medium ${
+                className={`flex items-center gap-3.5 px-5 py-3.5 rounded-2xl transition-all text-base font-bold ${
                   isActive
-                    ? "bg-emerald-700 text-white"
-                    : "text-emerald-200 hover:bg-emerald-900 hover:text-white"
+                    ? "bg-emerald-700 text-white shadow-md border border-emerald-500"
+                    : "text-emerald-100 hover:bg-emerald-900/80 hover:text-white"
                 }`}
               >
-                <Icon size={18} />
+                <Icon size={20} className={isActive ? "text-amber-300" : "text-emerald-300"} />
                 {item.label}
               </Link>
             );
@@ -80,28 +79,28 @@ export function AdminLayout() {
         </nav>
 
         {/* User switcher (demo) */}
-        <div className="p-4 border-t border-emerald-900 space-y-2">
+        <div className="p-4 border-t border-emerald-900 space-y-3">
           <div className="relative">
             <button
               onClick={() => setShowUserPicker((v) => !v)}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-emerald-900 transition-colors text-left"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl bg-emerald-900/60 hover:bg-emerald-900 transition-all border border-emerald-800 text-left"
             >
-              <div className="w-8 h-8 rounded-full bg-emerald-700 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-amber-400 text-emerald-950 flex items-center justify-center font-black text-base flex-shrink-0 shadow-sm">
                 {currentUser.name.charAt(0)}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white text-sm font-semibold truncate">{currentUser.name}</p>
-                <p className="text-emerald-400 text-xs truncate">
-                  {isSuperAdmin ? "Super Admin" : `Admin — ${myEnclosure?.name ?? "Sin recinto"}`}
+                <p className="text-white text-base font-bold truncate">{currentUser.name}</p>
+                <p className="text-amber-300 text-xs font-semibold truncate">
+                  {isSuperAdmin ? "Super Administrador" : `Admin — ${myEnclosure?.name ?? "Sin recinto"}`}
                 </p>
               </div>
-              <ChevronDown size={16} className={`text-emerald-400 transition-transform flex-shrink-0 ${showUserPicker ? "rotate-180" : ""}`} />
+              <ChevronDown size={18} className={`text-amber-300 transition-transform flex-shrink-0 ${showUserPicker ? "rotate-180" : ""}`} />
             </button>
 
             {showUserPicker && (
-              <div className="absolute bottom-full left-0 right-0 mb-2 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50">
-                <p className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100">
-                  Cambiar usuario (demo)
+              <div className="absolute bottom-full left-0 right-0 mb-2 bg-white rounded-2xl shadow-2xl border-2 border-emerald-200 overflow-hidden z-50">
+                <p className="px-4 py-3 text-xs font-black text-emerald-900 uppercase tracking-wider bg-emerald-50 border-b border-emerald-100">
+                  Seleccionar usuario de prueba
                 </p>
                 {users.map((u) => {
                   const enc = enclosures.find((e) => e.id === u.enclosureId);
@@ -109,21 +108,21 @@ export function AdminLayout() {
                     <button
                       key={u.id}
                       onClick={() => { setCurrentUser(u); setShowUserPicker(false); }}
-                      className={`w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-gray-50 transition-colors ${
-                        currentUser.id === u.id ? "bg-emerald-50" : ""
+                      className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-emerald-50 transition-colors border-b border-stone-100 ${
+                        currentUser.id === u.id ? "bg-emerald-100/60 font-bold" : ""
                       }`}
                     >
-                      <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-emerald-700 text-white flex items-center justify-center font-black text-sm flex-shrink-0">
                         {u.name.charAt(0)}
                       </div>
                       <div className="min-w-0">
-                        <p className="text-sm font-semibold text-gray-900 truncate">{u.name}</p>
-                        <p className="text-xs text-gray-400 truncate">
+                        <p className="text-sm font-extrabold text-stone-900 truncate">{u.name}</p>
+                        <p className="text-xs text-emerald-700 font-semibold truncate">
                           {u.role === "superadmin" ? "Super Admin" : `${enc?.icon ?? ""} ${enc?.name ?? "Sin recinto"}`}
                         </p>
                       </div>
                       {currentUser.id === u.id && (
-                        <span className="ml-auto w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" />
+                        <span className="ml-auto w-2.5 h-2.5 rounded-full bg-emerald-600 flex-shrink-0" />
                       )}
                     </button>
                   );
@@ -134,10 +133,10 @@ export function AdminLayout() {
 
           <Link
             to="/"
-            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-emerald-200 hover:bg-emerald-900 hover:text-white transition-colors text-sm font-medium"
+            className="flex items-center gap-3 px-4 py-3 rounded-2xl text-emerald-100 hover:bg-emerald-900 hover:text-amber-300 transition-colors text-base font-bold"
           >
-            <LogOut size={18} />
-            Volver al sitio
+            <LogOut size={20} />
+            Volver al Sitio Público
           </Link>
         </div>
       </aside>

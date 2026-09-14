@@ -88,24 +88,24 @@ export function Contact() {
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-stone-50 to-emerald-100">
       {/* Header */}
       <section className="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white py-16 shadow-md">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight">{t("contact.title")}</h1>
-          <p className="text-lg sm:text-xl text-emerald-100/90 font-medium max-w-2xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h1 className="text-4xl sm:text-6xl font-black mb-4 tracking-tight">{t("contact.title")}</h1>
+          <p className="text-lg sm:text-2xl text-emerald-100 font-semibold max-w-2xl">
             {t("contact.subtitle")}
           </p>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Formulario de Contacto */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-xl p-8 border border-emerald-100">
-              <h2 className="text-3xl font-bold text-emerald-950 mb-6">{t("contact.sendMessage")}</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="bg-white rounded-3xl shadow-xl p-8 md:p-10 border-2 border-emerald-100">
+              <h2 className="text-3xl md:text-4xl font-black text-emerald-950 mb-8">{t("contact.sendMessage")}</h2>
+              <form onSubmit={handleSubmit} className="space-y-7">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-stone-700 mb-2">
+                    <label className="block text-base font-extrabold text-emerald-950 mb-2">
                       {t("contact.fullName")}
                     </label>
                     <input
@@ -113,12 +113,12 @@ export function Contact() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="w-full px-4 py-3 border border-stone-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
-                      placeholder={isEs ? "Tu nombre" : "Your name"}
+                      className="w-full px-5 py-4 border-2 border-emerald-200 rounded-2xl focus:ring-4 focus:ring-emerald-400 focus:border-emerald-600 text-base font-semibold bg-emerald-50/30"
+                      placeholder={isEs ? "Tu nombre completo" : "Your full name"}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-stone-700 mb-2">
+                    <label className="block text-base font-extrabold text-emerald-950 mb-2">
                       {t("contact.email")}
                     </label>
                     <input
@@ -126,21 +126,21 @@ export function Contact() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="w-full px-4 py-3 border border-stone-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
+                      className="w-full px-5 py-4 border-2 border-emerald-200 rounded-2xl focus:ring-4 focus:ring-emerald-400 focus:border-emerald-600 text-base font-semibold bg-emerald-50/30"
                       placeholder="tu@email.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-stone-700 mb-2">
+                  <label className="block text-base font-extrabold text-emerald-950 mb-2">
                     {t("contact.subject")}
                   </label>
                   <select
                     required
                     value={formData.subject}
                     onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                    className="w-full px-4 py-3 border border-stone-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm bg-white"
+                    className="w-full px-5 py-4 border-2 border-emerald-200 rounded-2xl focus:ring-4 focus:ring-emerald-400 focus:border-emerald-600 text-base font-semibold bg-emerald-50/30"
                   >
                     <option value="">{t("contact.selectSubject")}</option>
                     <option value="informacion">{t("contact.optGeneral")}</option>
