@@ -1,4 +1,4 @@
-import { Info, MapPin, AlertCircle } from 'lucide-react';
+import { Info, MapPin, AlertCircle, Lightbulb } from 'lucide-react';
 import { Card } from './ui/card';
 
 interface AnimalCardProps {
@@ -69,12 +69,13 @@ export function AnimalCard({
         </div>
 
         {/* Dato curioso */}
-        <div className="pt-4 border-t border-emerald-100">
           <p className="text-base text-emerald-900 leading-relaxed bg-emerald-50/70 p-4 rounded-2xl border border-emerald-200">
-            <span className="font-extrabold text-emerald-950 block mb-1 text-sm uppercase tracking-wide">💡 DATO INTERESANTE</span>
+            <span className="font-extrabold text-emerald-950 flex items-center gap-1.5 mb-1 text-sm uppercase tracking-wide">
+              <Lightbulb className="w-4 h-4 text-amber-500" />
+              <span>DATO INTERESANTE</span>
+            </span>
             {funFact}
           </p>
-        </div>
       </div>
     </Card>
   );

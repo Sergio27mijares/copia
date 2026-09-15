@@ -90,7 +90,7 @@ export function Navbar() {
 
               {/* Language Selector */}
               <label className="flex items-center gap-1.5 text-xs text-stone-600 bg-stone-100 px-2.5 py-1.5 rounded-lg">
-                <span>🌐</span>
+                <span></span>
                 <select
                   value={language}
                   onChange={(event) => setLanguage(event.target.value as 'es' | 'en')}
@@ -145,7 +145,7 @@ export function Navbar() {
                   </Link>
 
                   <label className="flex items-center gap-1.5 text-xs text-stone-600 bg-stone-100 px-3 py-1.5 rounded-lg">
-                    <span>🌐</span>
+                    <span></span>
                     <select
                       value={language}
                       onChange={(event) => setLanguage(event.target.value as 'es' | 'en')}

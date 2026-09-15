@@ -14,13 +14,13 @@ const ENCLOSURE_COLORS = [
   { label: "Naranja", value: "bg-orange-500" },
 ];
 
-const ENCLOSURE_ICONS = ["🦎", "🦇", "🌿", "🐍", "🦜", "🐢", "🦋", "🐠", "🦁", "🐘", "🦏", "🐊"];
+const ENCLOSURE_ICONS = ["Reptiles", "Nocturno", "Vivario", "Serpientes", "Aves", "Anfibios", "Mariposas", "Peces", "Felinos", "Mamíferos", "Fauna Silvestre", "Cocodrilos"];
 
 const emptyForm: Omit<Enclosure, "id"> = {
   name: "",
   description: "",
   color: "bg-emerald-600",
-  icon: "🌿",
+  icon: "Vivario",
 };
 
 function EnclosureModal({

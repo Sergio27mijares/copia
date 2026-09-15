@@ -19,12 +19,17 @@ export interface Enclosure {
 export interface Animal {
   id: number;
   name: string;
+  nameEn?: string;
   scientificName: string;
   category: AnimalCategory;
   status: ConservationStatus;
+  statusEn?: string;
   habitat: string;
+  habitatEn?: string;
   diet: string;
+  dietEn?: string;
   funFact: string;
+  funFactEn?: string;
   image: string;
   audioUrl?: string;
   enclosureId: string | null;
@@ -49,21 +54,21 @@ export const DEFAULT_ENCLOSURES: Enclosure[] = [
     name: "Herpetario",
     description: "Reptiles y anfibios de la región",
     color: "bg-amber-500",
-    icon: "🦎",
+    icon: "reptile",
   },
   {
     id: "casa-nocturna",
     name: "Casa Nocturna",
     description: "Fauna de hábitos nocturnos",
     color: "bg-indigo-600",
-    icon: "🦇",
+    icon: "nocturnal",
   },
   {
     id: "vivario",
     name: "Vivario",
     description: "Ecosistemas controlados con flora y fauna",
     color: "bg-emerald-600",
-    icon: "🌿",
+    icon: "vivarium",
   },
 ];
 
@@ -73,12 +78,17 @@ export const INITIAL_ANIMALS: Animal[] = [
   {
     id: 1,
     name: "Jaguar",
+    nameEn: "Jaguar",
     scientificName: "Panthera onca",
     category: "Mamífero",
     status: "En Peligro de Extinción",
+    statusEn: "Endangered",
     habitat: "Selvas tropicales y bosques húmedos de Chiapas",
+    habitatEn: "Tropical rainforests and humid cloud forests of Chiapas",
     diet: "Carnívoro: pecaríes, venados, tapires, aves y reptiles",
+    dietEn: "Carnivore: peccaries, deer, tapirs, birds, and reptiles",
     funFact: "El jaguar tiene la mordida más fuerte de todos los felinos y puede romper el caparazón de una tortuga.",
+    funFactEn: "The jaguar has the strongest bite of all big cats and can pierce turtle shells.",
     image: "/assets/images/jaguar.svg",
     audioUrl: "https://actions.google.com/sounds/v1/animals/jaguar_roar.ogg",
     enclosureId: null,
@@ -86,60 +96,85 @@ export const INITIAL_ANIMALS: Animal[] = [
   {
     id: 2,
     name: "Tucán Pico Iris",
+    nameEn: "Keel-billed Toucan",
     scientificName: "Ramphastos sulfuratus",
     category: "Ave",
     status: "Amenazada",
+    statusEn: "Threatened",
     habitat: "Selva tropical húmeda, desde el sur de México hasta Colombia",
+    habitatEn: "Humid tropical jungle, from Southern Mexico to Colombia",
     diet: "Omnívoro: frutas, insectos, huevos y pequeños vertebrados",
+    dietEn: "Omnivore: fruits, insects, eggs, and small vertebrates",
     funFact: "Su pico grande y colorido representa el 30% de su longitud total.",
+    funFactEn: "Its large, colorful beak represents about 30% of its total body length.",
     image: "/assets/images/toucan.svg",
     enclosureId: "vivario",
   },
   {
     id: 3,
     name: "Tapir Centroamericano",
+    nameEn: "Baird's Tapir",
     scientificName: "Tapirus bairdii",
     category: "Mamífero",
     status: "En Peligro de Extinción",
+    statusEn: "Endangered",
     habitat: "Bosques tropicales y humedales del sur de México",
+    habitatEn: "Tropical forests and wetlands of Southern Mexico",
     diet: "Herbívoro: hojas, frutas, ramas y plantas acuáticas",
+    dietEn: "Herbivore: leaves, fruits, twigs, and aquatic plants",
     funFact: "Son excelentes nadadores y pueden sumergirse completamente en el agua.",
+    funFactEn: "They are excellent swimmers and can fully submerge under water.",
     image: "/assets/images/tapir.svg",
     enclosureId: null,
   },
   {
     id: 4,
     name: "Mono Araña",
+    nameEn: "Geoffroy's Spider Monkey",
     scientificName: "Ateles geoffroyi",
     category: "Mamífero",
     status: "En Peligro de Extinción",
+    statusEn: "Endangered",
     habitat: "Selvas tropicales del sureste mexicano",
+    habitatEn: "Tropical rainforests of Southeastern Mexico",
     diet: "Omnívoro principalmente frugívoro: frutas, flores, semillas e insectos",
+    dietEn: "Frugivorous omnivore: fruits, flowers, seeds, and insects",
     funFact: "Su cola prensil actúa como una quinta mano.",
+    funFactEn: "Its prehensile tail functions effectively as a fifth hand.",
     image: "/assets/images/monkey.svg",
     enclosureId: "casa-nocturna",
   },
   {
     id: 5,
     name: "Guacamaya Roja",
+    nameEn: "Scarlet Macaw",
     scientificName: "Ara macao",
     category: "Ave",
     status: "Amenazada",
+    statusEn: "Threatened",
     habitat: "Selvas tropicales húmedas de Chiapas",
+    habitatEn: "Humid tropical rainforests of Chiapas",
     diet: "Herbívoro: frutas, nueces, semillas y flores",
+    dietEn: "Herbivore: fruits, nuts, seeds, and wild flowers",
     funFact: "Forman parejas de por vida y pueden vivir hasta 50 años.",
+    funFactEn: "They mate for life and can live up to 50 years in protected habitats.",
     image: "/assets/images/macaw.svg",
     enclosureId: "vivario",
   },
   {
     id: 6,
     name: "Cocodrilo de Pantano",
+    nameEn: "Morelet's Crocodile",
     scientificName: "Crocodylus moreletii",
     category: "Reptil",
     status: "Protegida Especial",
+    statusEn: "Special Protection",
     habitat: "Ríos, lagos y pantanos de Chiapas y la costa del Golfo",
+    habitatEn: "Rivers, lakes, and freshwater swamps of Chiapas",
     diet: "Carnívoro: peces, aves, mamíferos pequeños y crustáceos",
+    dietEn: "Carnivore: fish, water birds, small mammals, and crustaceans",
     funFact: "Es el cocodrilo más pequeño de México, alcanzando un máximo de 3 metros.",
+    funFactEn: "It is one of Mexico's native crocodile species, growing up to 3 meters in length.",
     image: "/assets/images/rocodile.svg",
     enclosureId: "herpetario",
   },

@@ -1,4 +1,4 @@
-import { MapPin, Info, Utensils, ShoppingBag, Heart, TreePine, Camera, Compass, ExternalLink, Navigation } from "lucide-react";
+import { MapPin, Info, Utensils, ShoppingBag, Heart, TreePine, Camera, Compass, ExternalLink, Navigation, Clock, Sun, Users, CheckCircle2, Feather, ShieldAlert } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -11,8 +11,8 @@ export function ZooMap() {
     {
       id: "felinos",
       name: isEs ? "Zona de Felinos" : "Feline Zone",
-      icon: "🐆",
-      color: "bg-amber-100 border-amber-500 text-amber-900",
+      icon: ShieldAlert,
+      color: "bg-amber-50 border-amber-500 text-amber-950",
       badgeColor: "bg-amber-600 text-white",
       animals: ["Jaguar", "Ocelote", "Tigrillo", "Puma"],
       location: isEs ? "Entrada Norte" : "North Entrance",
@@ -21,8 +21,8 @@ export function ZooMap() {
     {
       id: "aviario",
       name: isEs ? "Aviario Tropical" : "Tropical Aviary",
-      icon: "🦜",
-      color: "bg-sky-100 border-sky-500 text-sky-900",
+      icon: Feather,
+      color: "bg-sky-50 border-sky-500 text-sky-950",
       badgeColor: "bg-sky-600 text-white",
       animals: ["Guacamaya Roja", "Tucán Pico Iris", "Águila Arpía", "Quetzal"],
       location: isEs ? "Zona Central" : "Central Zone",
@@ -31,8 +31,8 @@ export function ZooMap() {
     {
       id: "primates",
       name: isEs ? "Isla de Primates" : "Primate Island",
-      icon: "🐵",
-      color: "bg-purple-100 border-purple-500 text-purple-900",
+      icon: TreePine,
+      color: "bg-purple-50 border-purple-500 text-purple-950",
       badgeColor: "bg-purple-600 text-white",
       animals: ["Mono Araña", "Mono Aullador (Saraguato)", "Mono Capuchino"],
       location: isEs ? "Zona Este" : "East Zone",
@@ -41,8 +41,8 @@ export function ZooMap() {
     {
       id: "reptiles",
       name: isEs ? "Herpetario y Cocodrilario" : "Reptile & Crocodile Center",
-      icon: "🐊",
-      color: "bg-emerald-100 border-emerald-600 text-emerald-900",
+      icon: Compass,
+      color: "bg-emerald-50 border-emerald-600 text-emerald-950",
       badgeColor: "bg-emerald-700 text-white",
       animals: ["Cocodrilo de Pantano", "Boa Constrictor", "Iguana Verde", "Tortuga Casquito"],
       location: isEs ? "Zona Sur" : "South Zone",
@@ -51,8 +51,8 @@ export function ZooMap() {
     {
       id: "herbivoros",
       name: isEs ? "Reserva de Herbívoros" : "Herbivore Reserve",
-      icon: "🦌",
-      color: "bg-orange-100 border-orange-500 text-orange-900",
+      icon: MapPin,
+      color: "bg-orange-50 border-orange-500 text-orange-950",
       badgeColor: "bg-orange-600 text-white",
       animals: ["Tapir Centroamericano", "Venado Cola Blanca", "Pecarí de Collar"],
       location: isEs ? "Zona Oeste" : "West Zone",
@@ -61,8 +61,8 @@ export function ZooMap() {
     {
       id: "acuatica",
       name: isEs ? "Zona Acuática y Nutrias" : "Aquatic Zone & Otters",
-      icon: "🦦",
-      color: "bg-cyan-100 border-cyan-500 text-cyan-900",
+      icon: Camera,
+      color: "bg-cyan-50 border-cyan-500 text-cyan-950",
       badgeColor: "bg-cyan-600 text-white",
       animals: ["Nutria de Río", "Garza Blanca", "Patos Silvestres"],
       location: isEs ? "Lago Central" : "Central Lake",
@@ -158,7 +158,7 @@ export function ZooMap() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
             <div>
               <h2 className="text-3xl font-extrabold text-emerald-950 mb-2">{t("mapPage.zonesTitle")}</h2>
-              <p className="text-stone-600 text-sm">
+              <p className="text-stone-600 text-base">
                 {isEs ? "Filtra y explora las distintas zonas de conservación dentro del recorrido." : "Filter and explore the conservation zones along the trail."}
               </p>
             </div>
@@ -167,52 +167,62 @@ export function ZooMap() {
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setActiveTab("all")}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition ${
+                className={`px-4 py-2 rounded-xl text-xs font-extrabold transition ${
                   activeTab === "all" ? "bg-emerald-800 text-white shadow-sm" : "bg-stone-100 text-stone-700 hover:bg-stone-200"
                 }`}
               >
                 {isEs ? "Todas las zonas" : "All zones"}
               </button>
-              {zones.map(z => (
-                <button
-                  key={z.id}
-                  onClick={() => setActiveTab(z.id)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1 ${
-                    activeTab === z.id ? "bg-emerald-800 text-white shadow-sm" : "bg-stone-100 text-stone-700 hover:bg-stone-200"
-                  }`}
-                >
-                  <span>{z.icon}</span>
-                  <span>{z.name}</span>
-                </button>
-              ))}
+              {zones.map(z => {
+                const IconComp = z.icon;
+                return (
+                  <button
+                    key={z.id}
+                    onClick={() => setActiveTab(z.id)}
+                    className={`px-3.5 py-2 rounded-xl text-xs font-extrabold transition flex items-center gap-1.5 ${
+                      activeTab === z.id ? "bg-emerald-800 text-white shadow-sm" : "bg-stone-100 text-stone-700 hover:bg-stone-200"
+                    }`}
+                  >
+                    <IconComp className="w-3.5 h-3.5" />
+                    <span>{z.name}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredZones.map((zone, index) => (
-              <div key={index} className={`${zone.color} border-2 rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1 shadow-sm`}>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-4xl">{zone.icon}</span>
-                  <span className={`text-[11px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider ${zone.badgeColor}`}>
-                    {zone.location}
-                  </span>
-                </div>
-                <h3 className="font-bold text-xl mb-2">{zone.name}</h3>
-                <p className="text-xs opacity-90 mb-4 leading-relaxed">{zone.desc}</p>
-                <div className="space-y-1.5 pt-3 border-t border-black/10">
-                  <p className="font-extrabold text-xs uppercase tracking-wider opacity-80">
-                    {isEs ? "Especies destacadas:" : "Featured species:"}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {zone.animals.map((animal, idx) => (
-                      <span key={idx} className="bg-white/80 backdrop-blur-xs text-xs font-semibold px-2.5 py-1 rounded-lg border border-black/5 shadow-2xs">
-                        {animal}
+            {filteredZones.map((zone, index) => {
+              const ZoneIcon = zone.icon;
+              return (
+                <div key={index} className={`${zone.color} border-2 rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1 shadow-sm flex flex-col justify-between`}>
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="p-3 bg-white/90 rounded-xl shadow-xs text-emerald-900 border border-black/5">
+                        <ZoneIcon className="w-7 h-7" />
+                      </div>
+                      <span className={`text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider ${zone.badgeColor}`}>
+                        {zone.location}
                       </span>
-                    ))}
+                    </div>
+                    <h3 className="font-extrabold text-2xl mb-2 text-emerald-950">{zone.name}</h3>
+                    <p className="text-sm font-medium opacity-90 mb-5 leading-relaxed text-stone-800">{zone.desc}</p>
+                  </div>
+                  <div className="space-y-2 pt-3 border-t border-black/10">
+                    <p className="font-black text-xs uppercase tracking-wider text-emerald-950">
+                      {isEs ? "Especies destacadas:" : "Featured species:"}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {zone.animals.map((animal, idx) => (
+                        <span key={idx} className="bg-white/90 backdrop-blur-xs text-xs font-bold px-3 py-1 rounded-lg border border-black/10 text-emerald-950 shadow-2xs">
+                          {animal}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
@@ -221,10 +231,10 @@ export function ZooMap() {
           <h2 className="text-3xl font-extrabold text-emerald-950 mb-6">{t("mapPage.servicesTitle")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {facilities.map((facility, index) => (
-              <div key={index} className="bg-gradient-to-br from-emerald-50/80 to-stone-50 rounded-xl p-6 text-center border border-emerald-200/70 shadow-xs">
+              <div key={index} className="bg-gradient-to-br from-emerald-50/80 to-stone-50 rounded-2xl p-6 text-center border border-emerald-200/70 shadow-xs">
                 <facility.icon className="w-10 h-10 text-emerald-700 mx-auto mb-3" />
-                <h3 className="font-bold text-base text-stone-800 mb-1">{facility.name}</h3>
-                <p className="text-xs text-stone-600 leading-relaxed">{facility.description}</p>
+                <h3 className="font-bold text-lg text-stone-900 mb-1">{facility.name}</h3>
+                <p className="text-sm text-stone-600 leading-relaxed font-medium">{facility.description}</p>
               </div>
             ))}
           </div>
@@ -237,12 +247,13 @@ export function ZooMap() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {highlights.map((highlight, index) => (
-              <div key={index} className="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white rounded-2xl p-6 shadow-md">
+              <div key={index} className="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white rounded-2xl p-7 shadow-md">
                 <highlight.icon className="w-10 h-10 mb-3 text-emerald-300" />
-                <h3 className="font-bold text-xl mb-2">{highlight.title}</h3>
-                <p className="text-emerald-100/90 text-sm mb-4 leading-relaxed">{highlight.description}</p>
-                <div className="bg-white/15 inline-block px-3.5 py-1 rounded-full text-xs font-semibold text-emerald-200">
-                  ⏱️ {isEs ? "Duración aproximada:" : "Approximate duration:"} {highlight.duration}
+                <h3 className="font-extrabold text-2xl mb-2">{highlight.title}</h3>
+                <p className="text-emerald-100/90 text-base mb-4 leading-relaxed font-medium">{highlight.description}</p>
+                <div className="bg-white/15 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold text-emerald-200">
+                  <Clock className="w-4 h-4 text-amber-300" />
+                  <span>{isEs ? "Duración aproximada:" : "Approximate duration:"} {highlight.duration}</span>
                 </div>
               </div>
             ))}
@@ -250,17 +261,32 @@ export function ZooMap() {
         </section>
 
         {/* Consejos de Recorrido */}
-        <section className="bg-gradient-to-r from-emerald-900 to-emerald-950 rounded-2xl shadow-xl p-8 text-white">
+        <section className="bg-gradient-to-r from-emerald-900 to-emerald-950 rounded-3xl shadow-xl p-8 md:p-10 text-white">
           <div className="flex items-start gap-4">
-            <Info className="w-8 h-8 text-emerald-300 shrink-0 mt-1" />
-            <div>
-              <h3 className="font-bold text-2xl mb-4 text-white">{t("mapPage.tipsTitle")}</h3>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-emerald-100 text-sm leading-relaxed">
-                <li className="flex items-center gap-2">🌱 {t("mapPage.tip1")}</li>
-                <li className="flex items-center gap-2">🐆 {t("mapPage.tip2")}</li>
-                <li className="flex items-center gap-2">🌅 {t("mapPage.tip3")}</li>
-                <li className="flex items-center gap-2">🚻 {t("mapPage.tip4")}</li>
-                <li className="flex items-center gap-2">♿ {t("mapPage.tip5")}</li>
+            <Info className="w-9 h-9 text-amber-400 shrink-0 mt-1" />
+            <div className="w-full">
+              <h3 className="font-black text-3xl mb-6 text-white tracking-tight">{t("mapPage.tipsTitle")}</h3>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-emerald-50 text-base font-medium leading-relaxed">
+                <li className="flex items-center gap-3 bg-emerald-900/50 p-3.5 rounded-xl border border-emerald-800">
+                  <Clock className="w-5 h-5 text-amber-400 shrink-0" />
+                  <span>{t("mapPage.tip1")}</span>
+                </li>
+                <li className="flex items-center gap-3 bg-emerald-900/50 p-3.5 rounded-xl border border-emerald-800">
+                  <MapPin className="w-5 h-5 text-amber-400 shrink-0" />
+                  <span>{t("mapPage.tip2")}</span>
+                </li>
+                <li className="flex items-center gap-3 bg-emerald-900/50 p-3.5 rounded-xl border border-emerald-800">
+                  <Sun className="w-5 h-5 text-amber-400 shrink-0" />
+                  <span>{t("mapPage.tip3")}</span>
+                </li>
+                <li className="flex items-center gap-3 bg-emerald-900/50 p-3.5 rounded-xl border border-emerald-800">
+                  <Users className="w-5 h-5 text-amber-400 shrink-0" />
+                  <span>{t("mapPage.tip4")}</span>
+                </li>
+                <li className="flex items-center gap-3 bg-emerald-900/50 p-3.5 rounded-xl border border-emerald-800 md:col-span-2">
+                  <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />
+                  <span>{t("mapPage.tip5")}</span>
+                </li>
               </ul>
             </div>
           </div>

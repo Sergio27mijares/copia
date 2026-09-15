@@ -80,7 +80,7 @@ export function Navigation() {
               title="Cambiar idioma / Change language"
             >
               <Globe className="w-4 h-4 text-amber-800" />
-              <span>{i18n.language === 'es' ? '🇲🇽 ES' : '🇺🇸 EN'}</span>
+              <span>{i18n.language === 'es' ? 'ES' : 'EN'}</span>
             </button>
           </div>
 

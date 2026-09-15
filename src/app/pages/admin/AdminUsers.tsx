@@ -246,7 +246,7 @@ export function AdminUsers() {
                       <div className="flex justify-end gap-1">
                         <button onClick={() => setModalState({ open: true, user })}
                           className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
-                          ✏️
+                          <Edit2 size={16} />
                         </button>
                         <button onClick={() => setDeleteTarget(user)}
                           className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
@@ -336,7 +336,7 @@ export function AdminUsers() {
                         <div className="flex justify-end gap-1">
                           <button onClick={() => setModalState({ open: true, user })}
                             className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
-                            <span className="text-sm">✏️</span>
+                            <Edit2 size={16} />
                           </button>
                           <button onClick={() => setDeleteTarget(user)}
                             className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
